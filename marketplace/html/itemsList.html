@@ -1,0 +1,19 @@
+</form>
+<div class="container">
+    <h2>Наши товары</h2>
+    <div class="product-grid">
+        {%for i in items%}
+            <div class="product-card">
+                <a href="/item/{{i.id}}/"><img src="{{i.image.url}}" alt="Product 1"></a>
+                <a href="/item/{{i.id}}/"><h3>{{i.model}}</h3></a>
+                <p class="price">{{i.price}}₽ </p>
+                {%csrf_token%}
+                <form method = "post" action = "/add_to_cart/"> {%csrf_token%}
+                    <input type = "hidden" value="{{i.id}}" name="item_id">
+                    <button>Добавить в корзину</button>
+                </form>
+            </div>
+        {%endfor%}
+    </div>
+</div>
+
